@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Connect4</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet/less" type="text/css" href="css/connect4.less">
+		<script src="js/less.min.js"></script>
+	</head>
+	<body>
+
+		<header>
+			<h1>Connect4</h1>
+			<p style="color: red;">To play Connect4 only, start it with Node.js!</p>
+		</header>
+
+		<aside>
+
+			<h5>Players</h5>
+			<div id="players"></div>
+			<form id="add-player">
+				<input type="text" placeholder="Enter a name" maxlength="60" autofocus required><input type="color" value="#b9daff">
+				<input type="submit" value="Add">
+			</form>
+
+			<h5>Grid</h5>
+			<form id="settings">
+				<input type="number" min="2" max="9" value="7">
+				x
+				<input type="number" min="2" max="9" value="6">
+				&nbsp;
+				<input type="submit" value="New game">
+			</form>
+
+			<h5>History</h5>
+			<div id="history"></div>
+
+		</aside>
+
+
+		<section id="layer">
+			<div class="token"></div>
+			<div id="grid"></div>
+			<div id="next-player"></div>
+		</section>
+
+
+		<section id="auth">
+
+			<section id="profile">
+			</section>
+
+			<section id="rooms">
+			</section>
+
+			<section id="chat">
+			</section>
+
+		</section>
+
+		<script src="js/connect4.js"></script>
+
+	</body>
+</html>

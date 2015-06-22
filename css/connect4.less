@@ -1,0 +1,197 @@
+@base: #f938ab;
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+header {
+  text-align: center;
+  padding: 5px;
+  background: #fafafa;
+}
+
+body {
+  font-family: sans-serif;
+  color: #454545;
+}
+
+form {
+  white-space: nowrap;
+  overflow: visible;
+}
+
+form input {
+  border: 1px solid silver;
+  padding: 2px 6px;
+  height: 24px;
+  vertical-align: middle;
+  &[type="submit"] {
+    background: #ececec;
+  }
+}
+
+form, h5 {
+  margin: 10px 0;
+}
+
+#add-player input[type="submit"] {
+  width: 70px;
+}
+
+#settings input[type="submit"] {
+  width: 140px;
+}
+
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  -webkit-box-shadow: @style @c;
+  box-shadow: @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+
+.border-radius(@style) {
+  -webkit-border-radius: @style;
+  border-radius: @style;
+}
+
+.delete {
+  color: #ca4040;
+  float: right;
+  padding: 3px;
+  background: none;
+}
+
+aside {
+  margin: 0 10px;
+  width: 300px;
+  float: left;
+}
+
+[controller=auth] {
+  float: right;
+  h5 {
+    margin: 0;
+    padding-bottom: 6px;
+  }
+  section {
+    background: #f8f8f8;
+    margin: 20px;
+    padding: 10px;
+  }
+  .error {
+    color: red;
+    padding: 0;
+  }
+  form {
+    margin: 0;
+    input, label {
+      display: block;
+      margin: 10px;
+      width: 220px;
+    }
+    input[type="checkbox"] {
+      width: auto;
+      display: inline;
+      margin: 0 5px 0 0;
+    }
+  }
+}
+
+.room {
+  a {
+    display: block;
+    cursor: pointer;
+    padding: 2px;
+    margin: 0 -2px;
+    span {
+      float: right;
+    }
+  }
+  a:hover {
+    background: #dfefff;
+  }
+}
+
+#chat {
+  i {
+    float: right;
+    color: gray;
+  }
+  form input {
+    margin: 5px 0;
+    width: 240px;
+  }
+}
+
+#profile {
+  form {
+    float: right;
+    input {
+      width: 110px;
+      margin: 0;
+    }
+  }
+}
+
+.token {
+  position: relative;
+  .border-radius(100%);
+  border: 2px solid #cfcfcf;
+}
+
+#layer {
+  margin: 10px 320px;
+  padding: 10px;
+  text-align: center;
+  .token {
+    top: 0px;
+    width: 50px;
+    height: 50px;
+    margin: 5px auto;
+    transition: top .1s, left .2s;
+    -webkit-transition: top .1s, left .2s;
+  }
+}
+
+#history {
+  max-height: 300px;
+  padding: 5px;
+  overflow: auto;
+  background: #f8f8f8;
+}
+
+#players {
+  .player {
+    padding: 1px 3px;
+  }
+  .token {
+    top: 3px;
+    left: -3px;
+    display: inline-block;
+    border: 1px solid #cfcfcf;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+#grid {
+  position: relative;
+  display: inline-block;
+  canvas {
+    background: #f0f0f0;
+  }
+}
+
+#history, #grid, header, [controller=auth] section {
+  .box-shadow(0 0 3px, 30%);
+}
+
+.error {
+  text-align: center;
+  padding: 40px;
+  line-height: 30px;
+}

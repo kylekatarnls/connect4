@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Connect4</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="connect4.css">
+	</head>
+	<body>
+
+		<header>
+			<h1>Connect4</h1>
+		</header>
+
+		<aside>
+
+			<h5>Players</h5>
+			<div id="players"></div>
+			<form id="add-player">
+				<input type="text" placeholder="Enter a name" maxlength="60" autofocus required><input type="color" value="#b9daff">
+				<input type="submit" value="Add">
+			</form>
+
+			<h5>Grid</h5>
+			<form id="settings">
+				<input type="number" min="2" max="9" value="7">
+				x
+				<input type="number" min="2" max="9" value="6">
+				&nbsp;
+				<input type="submit" value="New game">
+			</form>
+
+			<h5>History</h5>
+			<div id="history"></div>
+
+		</aside>
+
+
+		<aside controller="auth">
+
+			<div if="! loggedIn">
+
+				<section id="login">
+					<div if="loginError" class="error">
+						{{ loginError }}
+					</div>
+					<form submit="login()">
+						<input type="text" model="name" placeholder="Name">
+						<input type="password" model="password" placeholder="Password">
+						<label><input type="checkbox" model="remember" autocomplete="off"> Remember me</label>
+						<input type="submit" value="Login">
+					</form>
+				</section>
+
+				<section id="register">
+					<div if="registerError" class="error">
+						{{ registerError }}
+					</div>
+					<form submit="register()">
+						<input type="text" model="registerName" placeholder="Name">
+						<input type="password" model="registerPassword" placeholder="Password">
+						<input type="password" model="registerPasswordConfirmation" placeholder="Confirm your password">
+						<label><input type="checkbox" model="remember" autocomplete="off"> Remember me</label>
+						<input type="submit" value="Register">
+					</form>
+				</section>
+
+			</div>
+
+			<div if="loggedIn">
+
+				<section id="profile">
+					<form submit="logout()">
+						<input type="submit" value="Logout">
+					</form>
+					<h5>
+						{{ user.name }}
+					</h5>
+					<div>
+						Victories: {{ number(user.victories) }}<br>
+						Defeats: {{ number(user.defeats) }}<br>
+						Average rounds to win: {{ number(user.roundsToWin) }}<br>
+						Average rounds to loose: {{ number(user.roundsToLoose) }}<br>
+						<a href="/">Quit the room</a>
+					</div>
+				</section>
+
+				<section id="rooms">
+					<h5>Rooms</h5>
+					<form>
+						<input type="text" model="roomName" style="width: 190px; float: left; margin: 0 20px 0 0;">
+						<input type="checkbox" model="roomEnabled" autocomplete="off">
+					</form>
+					<div repeat="room in rooms" class="room">
+						<a click="if(room.user) { $parent.join(room); }">
+							<span>{{ room.user ? '&gt;&gt;' : '' }}</span>
+							{{ room.name }}
+						</a>
+					</div>
+				</section>
+
+				<section id="chat">
+					<h5>Chat</h5>
+					<div repeat="message in chat.messages">
+						<i>{{ message.date.toLocaleString() }}</i>
+						<b>{{ message.author }}</b> :<br>
+						{{ message.content }}
+					</div>
+					<form submit="chat.sendMessage()">
+						<input type="text" model="chat.newMessage.content" autocomplete="off">
+					</form>
+				</section>
+
+			</div>
+
+		</aside>
+
+
+		<section id="layer">
+			<div class="token"></div>
+			<div id="grid"></div>
+			<div id="next-player"></div>
+		</section>
+
+
+		<script src="connect4.js"></script>
+
+	</body>
+</html>
